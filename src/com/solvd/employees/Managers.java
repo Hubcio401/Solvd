@@ -2,6 +2,9 @@ package com.solvd.employees;
 
 import com.solvd.resource.*;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Managers {
 
     private String Name;
@@ -108,5 +111,33 @@ public class Managers {
 
     public void setBonus(int bonus) {
         this.bonus = bonus;
+    }
+
+    @Override
+    public String toString() {
+        return "Managers{" +
+                "Name='" + Name + '\'' +
+                ", Surname='" + Surname + '\'' +
+                ", paycheck=" + paycheck +
+                ", clientsList=" + Arrays.toString(clientsList) +
+                ", workersList=" + Arrays.toString(workersList) +
+                ", bonus=" + bonus +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Managers managers = (Managers) o;
+        return paycheck == managers.paycheck && bonus == managers.bonus && Objects.equals(Name, managers.Name) && Objects.equals(Surname, managers.Surname) && Arrays.equals(clientsList, managers.clientsList) && Arrays.equals(workersList, managers.workersList);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(Name, Surname, paycheck, bonus);
+        result = 31 * result + Arrays.hashCode(clientsList);
+        result = 31 * result + Arrays.hashCode(workersList);
+        return result;
     }
 }

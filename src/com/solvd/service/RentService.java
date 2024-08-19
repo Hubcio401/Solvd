@@ -2,6 +2,8 @@ package com.solvd.service;
 
 import com.solvd.money.Rent;
 
+import java.util.Objects;
+
 public class RentService {
 
     public String nameOfCompany;
@@ -26,5 +28,24 @@ public class RentService {
 
     }
 
+    @Override
+    public String toString() {
+        return "RentService{" +
+                "nameOfCompany='" + nameOfCompany + '\'' +
+                ", where='" + where + '\'' +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RentService that = (RentService) o;
+        return Objects.equals(nameOfCompany, that.nameOfCompany) && Objects.equals(where, that.where);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameOfCompany, where);
+    }
 }

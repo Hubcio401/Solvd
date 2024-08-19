@@ -1,5 +1,7 @@
 package com.solvd.resource;
 
+import java.util.Objects;
+
 public class Resources {
 
     private int sandInKG;
@@ -31,4 +33,23 @@ public class Resources {
         this.bricks = bricks;
     }
 
+    @Override
+    public String toString(){
+        return "KG of sand in stock: " + sandInKG
+                + " and bricks in stock: " + bricks;
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Resources resources = (Resources) o;
+        return sandInKG == resources.sandInKG && bricks == resources.bricks;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sandInKG, bricks);
+    }
 }

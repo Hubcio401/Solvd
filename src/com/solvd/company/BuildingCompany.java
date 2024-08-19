@@ -2,6 +2,7 @@ package com.solvd.company;
 
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class BuildingCompany {
 
@@ -31,5 +32,23 @@ public class BuildingCompany {
                 "Office Name = '" + officeName + '\'' +
                 ", Office Address='" + officeAddress + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj instanceof BuildingCompany){
+            BuildingCompany otherObj = (BuildingCompany) obj;
+            return officeName.equals(otherObj.officeName) &&
+                    officeAddress.equals(otherObj.officeAddress);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return 17 * officeName.hashCode() + 31 * officeAddress.hashCode();
     }
 }

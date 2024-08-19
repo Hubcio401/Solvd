@@ -1,5 +1,7 @@
 package com.solvd.money;
 
+import java.util.Objects;
+
 public class Rent {
 
     public int diggercost = 100;
@@ -29,5 +31,31 @@ public class Rent {
     public double summaryCost(double dig, double shov){
         return dig + shov;
     }
+
+    @Override
+    public String toString() {
+        return "Rent{" +
+                "diggercost=" + diggercost +
+                ", shovel=" + shovel +
+                '}';
+    }
+
+    @Override
+    public int hashCode(){
+        return diggercost * shovel * 17;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
+        if (obj instanceof Rent){
+            Rent otherRent = (Rent) obj;
+            return diggercost == otherRent.diggercost && shovel == otherRent.shovel;
+        }
+        return false;
+    }
+
 
 }

@@ -1,6 +1,8 @@
 package com.solvd;
 
 import com.solvd.company.BuildingCompany;
+import com.solvd.date.ClientsDate;
+import com.solvd.date.MyDate;
 import com.solvd.employees.Managers;
 import com.solvd.employees.Workers;
 import com.solvd.money.Income;
@@ -10,6 +12,11 @@ import com.solvd.resource.CompanyResources;
 import com.solvd.resource.Resources;
 import com.solvd.service.CompanyResourcesService;
 import com.solvd.service.RentService;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Main {
 
@@ -95,6 +102,17 @@ public class Main {
         BuildingCompany company = new BuildingCompany("Hubert industries", "ul. krzywa 123");
         System.out.println(company);
 
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter new Date (dd/mm/yyyy): ");
+        String newDate = scan.next();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dateToChange = LocalDate.parse(newDate,formatter);
+
+        MyDate clientOneDate = new ClientsDate();
+        clientOneDate.setNewDate(clientOne,dateToChange);
+        clientOneDate.printDate(clientOne);
+
+        System.out.println(clientOneDate.sayHello());
 
     }
 }

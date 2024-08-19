@@ -2,6 +2,8 @@ package com.solvd.service;
 
 import com.solvd.resource.CompanyResources;
 
+import java.util.Objects;
+
 public class CompanyResourcesService {
 
     public String baseName;
@@ -18,5 +20,24 @@ public class CompanyResourcesService {
 
     }
 
+    @Override
+    public String toString() {
+        return "CompanyResourcesService{" +
+                "baseName='" + baseName + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CompanyResourcesService that = (CompanyResourcesService) o;
+        return Objects.equals(baseName, that.baseName) && Objects.equals(address, that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(baseName, address);
+    }
 }
