@@ -1,52 +1,47 @@
 package com.solvd.money;
 
-import com.solvd.employees.Managers;
+import com.solvd.company.Department;
+import com.solvd.employees.Manager;
+
+import java.util.Objects;
 
 public class Income {
 
-    public int losses = 0;
+    public int costs = 0;
     public int profit = 0;
+    public static int buildingmaintenance = 100;
 
-    public int losses(Managers man){
+    public void costs(Department dep, Manager man){
 
-        losses = man.workersCosts() + man.getPaycheck();
-        System.out.print("We lost: ");
-        return losses;
+        costs = dep.workersCosts() + buildingmaintenance + dep.managerCosts(man);
+        System.out.println("We lost: " + costs);
 
     }
 
-    public int profit(Managers man){
+    public void profit(Department dep){
 
-        profit = man.getProfit();
-        System.out.print("We earn: ");
-        return profit;
+        profit = dep.getProfit();
+        System.out.println("We earn: " + profit);
     }
 
     @Override
     public String toString() {
         return "Income{" +
-                "losses=" + losses +
+                "costs=" + costs +
                 ", profit=" + profit +
                 '}';
     }
 
     @Override
-    public int hashCode(){
-        return 17 * losses + 21 * profit;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Income income = (Income) o;
+        return costs == income.costs && profit == income.profit;
     }
 
     @Override
-    public boolean equals(Object obj){
-        if(obj == null){
-            return false;
-        }
-        if (obj instanceof Income) {
-            Income otherIncome = (Income) obj;
-            return losses == otherIncome.losses && profit == otherIncome.profit;
-        }
-        return false;
+    public int hashCode() {
+        return Objects.hash(costs, profit);
     }
-
-
-
 }

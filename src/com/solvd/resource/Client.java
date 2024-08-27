@@ -3,7 +3,7 @@ package com.solvd.resource;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Clients {
+public class Client {
 
     int id_client;
     LocalDate startDate ;
@@ -13,7 +13,7 @@ public class Clients {
     private int phoneNumber;
     int price;
 
-    public Clients(int id_client, String name, String surname, String address, int phoneNumber, int price) {
+    public Client(int id_client, String name, String surname, String address, int phoneNumber, int price) {
         startDate = LocalDate.now();
         this.id_client = id_client;
         this.name = name;
@@ -66,8 +66,8 @@ public class Clients {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Clients clients = (Clients) o;
-        return id_client == clients.id_client && phoneNumber == clients.phoneNumber && price == clients.price && Objects.equals(startDate, clients.startDate) && Objects.equals(name, clients.name) && Objects.equals(surname, clients.surname) && Objects.equals(address, clients.address);
+        Client client = (Client) o;
+        return id_client == client.id_client && phoneNumber == client.phoneNumber && price == client.price && Objects.equals(startDate, client.startDate) && Objects.equals(name, client.name) && Objects.equals(surname, client.surname) && Objects.equals(address, client.address);
     }
 
     @Override

@@ -1,21 +1,19 @@
 package com.solvd;
 
 import com.solvd.company.BuildingCompany;
+import com.solvd.company.Department;
+import com.solvd.company.Shop;
 import com.solvd.date.ClientsDate;
 import com.solvd.date.MyDate;
-import com.solvd.employees.Managers;
-import com.solvd.employees.Workers;
+import com.solvd.employees.Manager;
 import com.solvd.money.Income;
-import com.solvd.money.Rent;
-import com.solvd.resource.Clients;
-import com.solvd.resource.CompanyResources;
-import com.solvd.resource.Resources;
-import com.solvd.service.CompanyResourcesService;
-import com.solvd.service.RentService;
+import com.solvd.resource.Client;
+import com.solvd.resource.Warehouse;
+import com.solvd.service.Production;
+import com.solvd.service.ShopService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -58,49 +56,41 @@ public class Main {
 
 
 
-        Managers man = new Managers("Vito", "Corleone",200,40);
+        Manager man = new Manager("Vito", "Corleone",200,40);
 
-        Resources res = new Resources(4,6);
-        man.getResources(res);
-        man.setResources(res,9,12);
-        man.getResources(res);
+        Department dep = new Department();
 
-        man.addClient(0,"Anthony", "Soprano", "Krakow", 25751263, 1000);
-        man.addClient(1,"Maria", "Adamczyk", "Warsaw", 1245456, 2700);
-        man.printClients();
-        man.hireWorkers(0,"Hubert","Ziobro",50);
-        man.hireWorkers(1,"Damina","Nowak",122);
+        dep.addClient(0,"Anthony", "Soprano", "Krakow", 25751263, 1000);
+        dep.addClient(1,"Maria", "Adamczyk", "Warsaw", 1245456, 2700);
+        dep.printClients();
+        dep.hireWorkers(0,"Hubert","Ziobro",50);
+        dep.hireWorkers(1,"Damina","Nowak",122);
 
         Income in = new Income();
-
-        System.out.println(in.losses(man));
-        System.out.println(in.profit(man));
-        System.out.println(BuildingCompany.getCompanyStart());
-        System.out.println(BuildingCompany.getOwner());
-
-        Rent rent = new Rent(120,30);
-        RentService rentService = new RentService("BuildersCompany","Berlin");
-        rentService.rentDig(rent);
-        rentService.rentShov(rent);
-
-        CompanyResources compRes = new CompanyResources(3,1);
-        CompanyResourcesService compResServ = new CompanyResourcesService("Dom","krakow - ul. stanczyka");
-        compResServ.getResources(compRes);
-
-        System.out.println("Summary rent costs: " + rent.summaryCost(10,2));
-        System.out.println("Summary rent costs: " + rent.summaryCost(10.68,2.74));
-
-        System.out.println("Summary paycheck costs: " + man.summaryPaycheck(200,10));
-        System.out.println("Summary paycheck costs: " + man.summaryPaycheck(200.42,10.12));
-
-        Clients clientOne = new Clients(2,"Mike","Wazowski","Wroclaw",1256323,5000);
-        System.out.println(clientOne);
-
-        Workers workerOne = new Workers(3,"Robin","Hood",300);
-        System.out.println(workerOne.getName());
+        in.costs(dep,man);
+        in.profit(dep);
 
         BuildingCompany company = new BuildingCompany("Hubert industries", "ul. krzywa 123");
+        company.addStore("store",12,55,12);
+        company.printStore();
+        ShopService stserv = new ShopService("Simon", "Tem");
+        company.sendBricks(stserv,14);
+        company.printStore();
+        company.sendTools(stserv,3);
+        company.printStore();
+
+        Production p = new Production(0,0);
+        Warehouse war = new Warehouse(5,5,5);
+        war.addWood(p);
+
+        Shop stor = new Shop("store name",4,5,6);
+
+
         System.out.println(company);
+        company.setWarehouse(war,4,6,9);
+        company.getWarehouse(war);
+
+        Client clientOne = new Client(1,"Ewelina", "Jackson","boston", 525321, 5000);
 
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter new Date (dd/mm/yyyy): ");

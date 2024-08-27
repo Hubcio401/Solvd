@@ -1,20 +1,20 @@
 package com.solvd.date;
 
-import com.solvd.resource.Clients;
+import com.solvd.resource.Client;
 
 import java.time.LocalDate;
 
 public class ClientsDate extends MyDate{
 
     @Override
-    public void printDate(Clients cli) {
+    public void printDate(Client cli) {
 
         System.out.println(cli.getStartDate());
 
     }
 
     @Override
-    public void setNewDate(Clients cli, LocalDate newdate){
+    public void setNewDate(Client cli, LocalDate newdate){
 
         cli.setStartDate(newdate);
 

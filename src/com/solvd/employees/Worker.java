@@ -1,9 +1,8 @@
 package com.solvd.employees;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
-public class Workers {
+public class Worker {
 
     public int id_worker;
     private String Name;
@@ -11,10 +10,10 @@ public class Workers {
     private int paycheck = 0;
     public LocalDate beginningOfContract;
 
-    public Workers() {
+    public Worker() {
     }
 
-    public Workers(int id_worker, String name, String surname, int paycheck) {
+    public Worker(int id_worker, String name, String surname, int paycheck) {
         this.id_worker = id_worker;
         Name = name;
         Surname = surname;
@@ -22,7 +21,7 @@ public class Workers {
         beginningOfContract = LocalDate.now();
     }
 
-    public Workers(String name, String surname) {
+    public Worker(String name, String surname) {
         Name = name;
         Surname = surname;
     }
@@ -72,8 +71,8 @@ public class Workers {
         if (obj == null){
             return false;
         }
-        if(obj instanceof Workers){
-            Workers otherWorker = (Workers) obj;
+        if(obj instanceof Worker){
+            Worker otherWorker = (Worker) obj;
             return id_worker == otherWorker.id_worker &&
                     Name.equals(otherWorker.Name) &&
                     Surname.equals(otherWorker.Surname) &&
