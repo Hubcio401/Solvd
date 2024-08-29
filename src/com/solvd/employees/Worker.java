@@ -10,7 +10,15 @@ public class Worker {
     private int paycheck = 0;
     public LocalDate beginningOfContract;
 
+
     public Worker() {
+    }
+
+    public Worker(String name, String surname, int paycheck) {
+        Name = name;
+        Surname = surname;
+        this.paycheck = paycheck;
+        this.beginningOfContract = LocalDate.now();
     }
 
     public Worker(int id_worker, String name, String surname, int paycheck) {

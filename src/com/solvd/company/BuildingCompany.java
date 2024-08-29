@@ -1,23 +1,57 @@
 package com.solvd.company;
 
 
+import com.solvd.money.Expense;
 import com.solvd.resource.Warehouse;
-import com.solvd.service.ShopService;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 public class BuildingCompany {
 
-
     public String officeName;
     public String officeAddress;
-    public Shop shopList[] = new Shop[1];
+    private Shop shopList[] = new Shop[1];
+    private Department departmentsList[] = new Department[1];
+
+    public static int buildingmaintenance = 100;
+
 
     public BuildingCompany(String officeName, String officeAddress) {
         this.officeName = officeName;
         this.officeAddress = officeAddress;
     }
+
+    public BuildingCompany(Department[] departmentsList) {
+        this.departmentsList = departmentsList;
+    }
+
+
+    public void printAllClients(Department department){
+        department.printClients();
+    }
+
+    public void printDepartmentNames(){
+        for(int i = 0; i<departmentsList.length;i++){
+            System.out.println(departmentsList[i].getDepartmentName());
+        }
+    }
+
+    public void createShop(String name, int bricks, int cement, int tools){
+        shopList[0].name = name;
+        shopList[0].setBricks(bricks);
+        shopList[0].setCement(cement);
+        shopList[0].setTools(tools);
+    }
+
+    public void createShopService(String name, String surname){
+        shopList[0].createShopServiece(name,surname);
+    }
+
+    public void sendBricks(int bricks){
+        shopList[0].sendBricks(bricks);
+    }
+
 
 
     public void getWarehouse(Warehouse st){
@@ -45,20 +79,6 @@ public class BuildingCompany {
         }
     }
 
-    public void sendBricks(ShopService stserv, int br){
-        stserv.sendBr(shopList[0],br);
-        System.out.println("to " + stserv.getClientName() + " " + stserv.getClientSurname());
-    }
-
-    public void sendTools(ShopService stserv, int to){
-        stserv.sendTl(shopList[0],to);
-        System.out.println("to " + stserv.getClientName() + " " + stserv.getClientSurname());
-    }
-
-    public void sendCement(ShopService stserv, int ce){
-        stserv.sendCe(shopList[0],ce);
-        System.out.print("to " + stserv.getClientName() + " " + stserv.getClientSurname());
-    }
 
     @Override
     public String toString() {

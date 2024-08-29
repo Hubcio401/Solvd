@@ -1,5 +1,7 @@
 package com.solvd.company;
 
+import com.solvd.service.ShopService;
+
 import java.util.Objects;
 
 public class Shop {
@@ -8,6 +10,7 @@ public class Shop {
     private int bricks;
     private int cement;
     private int tools;
+    private ShopService shopService = new ShopService();
 
     public Shop(String name, int bricks, int cement, int tools) {
         this.name = name;
@@ -25,6 +28,24 @@ public class Shop {
     public Shop(String name, int bricks) {
         this.name = name;
         this.bricks = bricks;
+    }
+
+    public Shop() {
+    }
+
+    public void createShopServiece(String clientName, String clientSurname){
+
+        shopService.setClientName(clientName);
+        shopService.setClientSurname(clientSurname);
+
+    }
+
+    public void sendBricks(int br){
+        if (bricks>0) {
+            shopService.sendBr(br);
+        }
+        else
+            System.out.println(" not enough bricks");
     }
 
     public int getBricks() {

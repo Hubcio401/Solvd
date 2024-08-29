@@ -2,43 +2,53 @@ package com.solvd.company;
 
 import com.solvd.employees.Manager;
 import com.solvd.employees.Worker;
+import com.solvd.money.Expense;
 import com.solvd.resource.Client;
 
 import java.util.Arrays;
 
 public class Department {
 
-    public Worker workersList[] = new Worker[2];
-    public Client clientsList[] = new Client[2];
+    private String departmentName;
+    private Manager manager = new Manager();
+    private Worker workersList[] = new Worker[2];
+    private Client clientsList[] = new Client[2];
+    private Expense expense = new Expense();
 
 
-    public void hireWorkers(int id_worker, String name, String surname, int paycheck){
+    public void checkCosts(){
+        System.out.println(expense.costs(workersList,manager));
+    }
 
-        workersList[id_worker] = new Worker(id_worker,name,surname,paycheck);
+    public void checkProfit(){
+        System.out.println(expense.profit(clientsList));
+    }
+
+
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+
+
+    public void hireWorker(int id_worker, Worker worker){
+
+        this.workersList[id_worker] = worker;
 
     }
 
-    public int workersCosts(){
-        int costs = 0;
-        for (int i = 0; i < workersList.length; i++){
-            costs = costs + workersList[i].getPaycheck();
-        }
-        return costs;
+    public void hireManager(Manager manager){
+        this.manager = manager;
+    }
+    public Manager printManager(){
+        return manager;
     }
 
-    public int managerCosts(Manager man){
-        int mancosts = 0;
-        mancosts = man.getPaycheck() + man.getBonus();
-        return mancosts;
+    public void checkManagerPaycheck(){
+        System.out.println(manager.getPaycheck());
     }
 
-    public int getProfit(){
-        int profit=0;
-        for (int i = 0; i < clientsList.length; i++){
-            profit = profit + clientsList[i].getPrice();
-        }
-        return profit;
-    }
 
     public void addClient(int id_client, String name, String surname, String address, int phoneNumber, int price){
 
@@ -51,6 +61,14 @@ public class Department {
         for(int i = 0; i< clientsList.length; i++){
             System.out.println(clientsList[i]);
         }
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.solvd.employees;
 
-import com.solvd.resource.*;
 
 import java.util.Objects;
 
@@ -34,6 +33,21 @@ public class Manager {
     }
 
 
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getSurname() {
+        return Surname;
+    }
+
+    public void setSurname(String surname) {
+        Surname = surname;
+    }
 
     public int getPaycheck() {
         return paycheck;
@@ -41,6 +55,14 @@ public class Manager {
 
     public void setPaycheck(int paycheck) {
         this.paycheck = paycheck;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
     }
 
     public int summaryPaycheck(int paycheck, int bonus){
@@ -55,13 +77,6 @@ public class Manager {
     }
 
 
-    public int getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(int bonus) {
-        this.bonus = bonus;
-    }
 
     @Override
     public String toString() {

@@ -14,6 +14,9 @@ public class ShopService {
         this.clientSurname = clientSurname;
     }
 
+    public ShopService() {
+    }
+
     public String getClientName() {
         return clientName;
     }
@@ -30,44 +33,11 @@ public class ShopService {
         this.clientSurname = clientSurname;
     }
 
-    public void checkResources(Shop s){
-        System.out.println(s.getBricks() + " bricks");
-        System.out.println(s.getTools() + " tools");
-        System.out.println(s.getCement() + " bags of cement");
 
-    }
-
-    public void sendBr(Shop s, int bricks){
-        if(s.getBricks()>bricks){
+    public void sendBr(int bricks){
             System.out.println("We send " + bricks + " bricks");
-            int bri = s.getBricks() - bricks;
-            s.setBricks(bri);
-        }
-        else{
-            System.out.println("We don't have enough bricks");
-        }
-    }
-    public void sendTl(Shop s, int tools){
-        if(s.getTools()>tools){
-            System.out.println("We send " + tools + " tools");
-            int to = s.getBricks() - tools;
-            s.setTools(to);
-        }
-        else{
-            System.out.println("We don't have enough tools");
-        }
     }
 
-    public void sendCe(Shop s, int cement){
-        if(s.getCement()>cement){
-            System.out.println("We send " + cement + " cement");
-            int ce = s.getBricks() - cement;
-            s.setCement(ce);
-        }
-        else{
-            System.out.println("We don't have enough cement");
-        }
-    }
 
     @Override
     public String toString() {
