@@ -33,19 +33,14 @@ public class Shop {
     public Shop() {
     }
 
-    public void createShopServiece(String clientName, String clientSurname){
+    public void createShopServiece(ShopService shopService){
 
-        shopService.setClientName(clientName);
-        shopService.setClientSurname(clientSurname);
+        this.shopService = shopService;
 
     }
 
     public void sendBricks(int br){
-        if (bricks>0) {
             shopService.sendBr(br);
-        }
-        else
-            System.out.println(" not enough bricks");
     }
 
     public int getBricks() {

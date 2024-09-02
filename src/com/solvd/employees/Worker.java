@@ -8,7 +8,7 @@ public class Worker {
     private String Name;
     private String Surname;
     private int paycheck = 0;
-    public LocalDate beginningOfContract;
+    private LocalDate beginningOfContract;
 
 
     public Worker() {

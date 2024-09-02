@@ -10,17 +10,21 @@ public class Expense {
 
     private int costs ;
     private int profit;
+    private static int buildingmaintenance = 100;
 
     public Expense() {
     }
 
+    public static void checkBuildingMaintenance(){
+        System.out.println("Building Maintenance = " + buildingmaintenance);
+    }
 
     public int costs(Worker arrW[], Manager man){
 
         for(int i=0;i < arrW.length;i++){
             costs = costs + arrW[i].getPaycheck();
         }
-        costs = costs + man.getPaycheck() + man.getBonus();
+        costs = costs + man.getPaycheck() + man.getBonus() + buildingmaintenance;
         return costs;
     }
 

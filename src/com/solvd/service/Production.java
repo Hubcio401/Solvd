@@ -4,28 +4,46 @@ import java.util.Objects;
 
 public class Production {
 
-    public int wood;
-    public int glass;
+    private int wood;
+    private int glass;
+
+    public Production() {
+    }
 
     public Production(int wood, int glass) {
         this.wood = wood;
         this.glass = glass;
     }
 
-    public void produceWood(){
+    public int produceWood(){
         wood = wood +10;
+        return 10;
     }
 
-    public void produceGlass(){
-        wood = wood +10;
+    public int produceGlass(){
+        glass = glass +10;
+        return 10;
     }
 
-    public int sendWood(){
+    public void checkProduction(){
+        System.out.println("we already produce " + wood + " wood and " + glass + " glass");
+    }
+
+
+    public int getWood() {
         return wood;
     }
 
-    public int sendGlass(){
+    public void setWood(int wood) {
+        this.wood = wood;
+    }
+
+    public int getGlass() {
         return glass;
+    }
+
+    public void setGlass(int glass) {
+        this.glass = glass;
     }
 
     @Override

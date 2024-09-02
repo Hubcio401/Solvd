@@ -1,6 +1,5 @@
 package com.solvd.service;
 
-import com.solvd.company.Shop;
 
 import java.util.Objects;
 

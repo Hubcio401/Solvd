@@ -7,10 +7,11 @@ import java.util.Objects;
 
 public class Warehouse {
 
-    public int bagsOfCement = 0;
-    public int wood = 0;
-    public int glass = 0;
-    LocalDate productionDate ;
+    private int bagsOfCement;
+    private int wood;
+    private int glass;
+    private LocalDate productionDate;
+    Production production = new Production();
 
     public Warehouse() {
     }
@@ -30,19 +31,23 @@ public class Warehouse {
         this.bagsOfCement = bagsOfCement;
     }
 
-
-    public void addWood(Production prod){
-        prod.produceWood();
-        wood = wood + prod.sendWood();
-        productionDate = LocalDate.now();
-        System.out.println("produce and add 10 woods to warehouse at " + productionDate);
+    public void createProduction(Production production){
+        this.production = production;
     }
 
-    public void addGlass(Production prod){
-        prod.produceGlass();
-        glass = glass + prod.sendGlass();
+    //??
+    public void produceWood(){
+        wood = wood + production.produceWood();
         productionDate = LocalDate.now();
-        System.out.println("produce and add 10 glass to warehouse" + productionDate);
+        System.out.println("At " + productionDate + " we produce wood");
+        System.out.println("Now we have " + wood + " woods" );
+    }
+
+
+    public void produceGlass(){
+        glass = glass + production.produceGlass();
+        System.out.println("At " + productionDate + " we produce glass");
+        System.out.println("Now we have " + glass + " glass" );
     }
 
     public int getBagsOfCement() {
@@ -68,6 +73,7 @@ public class Warehouse {
     public void setGlass(int glass) {
         this.glass = glass;
     }
+
 
     @Override
     public String toString() {
