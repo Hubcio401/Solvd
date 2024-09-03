@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class Manager {
 
-    private String Name;
-    private String Surname;
+    private String name;
+    private String surname;
     private int paycheck;
     private int bonus;
 
@@ -14,39 +14,39 @@ public class Manager {
     }
 
     public Manager(String name, String surname) {
-        Name = name;
-        Surname = surname;
+        this.name = name;
+        this.surname = surname;
     }
 
 
     public Manager(String name, String surname, int paycheck) {
-        Name = name;
-        Surname = surname;
+        this.name = name;
+        this.surname = surname;
         this.paycheck = paycheck;
     }
 
     public Manager(String name, String surname, int paycheck, int bonus) {
-        Name = name;
-        Surname = surname;
+        this.name = name;
+        this.surname = surname;
         this.paycheck = paycheck;
         this.bonus = bonus;
     }
 
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getSurname() {
-        return Surname;
+        return surname;
     }
 
     public void setSurname(String surname) {
-        Surname = surname;
+        this.surname = surname;
     }
 
     public int getPaycheck() {
@@ -81,8 +81,8 @@ public class Manager {
     @Override
     public String toString() {
         return "Managers{" +
-                "Name='" + Name + '\'' +
-                ", Surname='" + Surname + '\'' +
+                "Name='" + name + '\'' +
+                ", Surname='" + surname + '\'' +
                 ", paycheck=" + paycheck +
                 ", bonus=" + bonus +
                 '}';
@@ -93,12 +93,12 @@ public class Manager {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Manager manager = (Manager) o;
-        return paycheck == manager.paycheck && bonus == manager.bonus && Objects.equals(Name, manager.Name) && Objects.equals(Surname, manager.Surname);
+        return paycheck == manager.paycheck && bonus == manager.bonus && Objects.equals(name, manager.name) && Objects.equals(surname, manager.surname);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(Name, Surname, paycheck, bonus);
+        int result = Objects.hash(name, surname, paycheck, bonus);
         return result;
     }
 }

@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Worker {
 
     public int id_worker;
-    private String Name;
-    private String Surname;
+    private String name;
+    private String surname;
     private int paycheck = 0;
     private LocalDate beginningOfContract;
 
@@ -15,31 +15,31 @@ public class Worker {
     }
 
     public Worker(String name, String surname, int paycheck) {
-        Name = name;
-        Surname = surname;
+        this.name = name;
+        this.surname = surname;
         this.paycheck = paycheck;
         this.beginningOfContract = LocalDate.now();
     }
 
     public Worker(int id_worker, String name, String surname, int paycheck) {
         this.id_worker = id_worker;
-        Name = name;
-        Surname = surname;
+        this.name = name;
+        this.surname = surname;
         this.paycheck = paycheck;
         beginningOfContract = LocalDate.now();
     }
 
     public Worker(String name, String surname) {
-        Name = name;
-        Surname = surname;
+        this.name = name;
+        this.surname = surname;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getSurname() {
-        return Surname;
+        return surname;
     }
 
     public int getPaycheck() {
@@ -47,11 +47,11 @@ public class Worker {
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public void setSurname(String surname) {
-        Surname = surname;
+        this.surname = surname;
     }
 
     public void setPaycheck(int paycheck) {
@@ -62,8 +62,8 @@ public class Worker {
     public String toString() {
         return "Workers{" +
                 "id_worker=" + id_worker +
-                ", Name='" + Name + '\'' +
-                ", Surname='" + Surname + '\'' +
+                ", Name='" + name + '\'' +
+                ", Surname='" + surname + '\'' +
                 ", paycheck=" + paycheck +
                 ", beginningOfContract=" + beginningOfContract +
                 '}';
@@ -71,7 +71,7 @@ public class Worker {
 
     @Override
     public int hashCode(){
-        return 3 * Name.hashCode() + 7 * Surname.hashCode() * paycheck;
+        return 3 * name.hashCode() + 7 * surname.hashCode() * paycheck;
     }
 
     @Override
@@ -82,8 +82,8 @@ public class Worker {
         if(obj instanceof Worker){
             Worker otherWorker = (Worker) obj;
             return id_worker == otherWorker.id_worker &&
-                    Name.equals(otherWorker.Name) &&
-                    Surname.equals(otherWorker.Surname) &&
+                    name.equals(otherWorker.name) &&
+                    surname.equals(otherWorker.surname) &&
                     paycheck == otherWorker.paycheck &&
                     beginningOfContract.equals(otherWorker.beginningOfContract);
 
