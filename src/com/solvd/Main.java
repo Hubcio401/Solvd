@@ -3,12 +3,19 @@ package com.solvd;
 import com.solvd.company.BuildingCompany;
 import com.solvd.company.Department;
 import com.solvd.company.Shop;
+import com.solvd.date.ClientsDate;
+import com.solvd.date.MyDate;
 import com.solvd.employees.Manager;
 import com.solvd.employees.Worker;
 import com.solvd.money.Expense;
+import com.solvd.resource.Client;
 import com.solvd.resource.Warehouse;
 import com.solvd.service.Production;
 import com.solvd.service.ShopService;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class Main {
 
@@ -96,6 +103,20 @@ public class Main {
         company.printAllClients();
 
         Expense.checkBuildingMaintenance();
+
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter new Date (dd/mm/yyyy): ");
+        String newDate = scan.next();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dateToChange = LocalDate.parse(newDate,formatter);
+
+        Client clientOne = new Client(1,"Ewelina", "Jackson","boston", 525321, 5000);
+        MyDate clientOneDate = new ClientsDate();
+        clientOneDate.setNewDate(clientOne,dateToChange);
+        clientOneDate.printDate(clientOne);
+
+        System.out.println(clientOneDate.sayHello());
 
 
     }

@@ -5,13 +5,13 @@ import java.util.Objects;
 
 public class Client {
 
-    int id_client;
+    private int id_client;
     private LocalDate startDate ;
     private String name;
     private String surname;
     private String address;
     private int phoneNumber;
-    int price;
+    private int price;
 
     public Client(int id_client, String name, String surname, String address, int phoneNumber, int price) {
         startDate = LocalDate.now();

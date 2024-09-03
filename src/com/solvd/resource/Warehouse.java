@@ -11,7 +11,7 @@ public class Warehouse {
     private int wood;
     private int glass;
     private LocalDate productionDate;
-    Production production = new Production();
+    private Production production = new Production();
 
     public Warehouse() {
     }
@@ -74,26 +74,26 @@ public class Warehouse {
         this.glass = glass;
     }
 
-
-    @Override
-    public String toString() {
-        return "Stock{" +
-                "bagsOfCement=" + bagsOfCement +
-                ", wood=" + wood +
-                ", glass=" + glass +
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Warehouse warehouse = (Warehouse) o;
-        return bagsOfCement == warehouse.bagsOfCement && wood == warehouse.wood && glass == warehouse.glass && Objects.equals(productionDate, warehouse.productionDate);
+        return bagsOfCement == warehouse.bagsOfCement && wood == warehouse.wood && glass == warehouse.glass && Objects.equals(productionDate, warehouse.productionDate) && Objects.equals(production, warehouse.production);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bagsOfCement, wood, glass, productionDate);
+        return Objects.hash(bagsOfCement, wood, glass, productionDate, production);
+    }
+
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "bagsOfCement=" + bagsOfCement +
+                ", wood=" + wood +
+                ", glass=" + glass +
+                ", productionDate=" + productionDate +
+                '}';
     }
 }

@@ -82,11 +82,11 @@ public class Shop {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Shop shop = (Shop) o;
-        return bricks == shop.bricks && cement == shop.cement && tools == shop.tools && Objects.equals(name, shop.name);
+        return bricks == shop.bricks && cement == shop.cement && tools == shop.tools && Objects.equals(name, shop.name) && Objects.equals(shopService, shop.shopService);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, bricks, cement, tools);
+        return Objects.hash(name, bricks, cement, tools, shopService);
     }
 }

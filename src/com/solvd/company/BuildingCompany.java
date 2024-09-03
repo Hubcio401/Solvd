@@ -63,27 +63,30 @@ public class BuildingCompany {
         }
     }
 
-
-    @Override
-    public String toString() {
-        return
-                "Office Name = '" + officeName + '\'' +
-                ", Office Address='" + officeAddress + '\'' +
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BuildingCompany company = (BuildingCompany) o;
-        return Objects.equals(officeName, company.officeName) && Objects.equals(officeAddress, company.officeAddress) && Arrays.equals(shopList, company.shopList);
+        return Objects.equals(officeName, company.officeName) && Objects.equals(officeAddress, company.officeAddress) && Arrays.equals(shopList, company.shopList) && Arrays.equals(departmentsList, company.departmentsList) && Objects.equals(warehouse, company.warehouse);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(officeName, officeAddress);
+        int result = Objects.hash(officeName, officeAddress, warehouse);
         result = 31 * result + Arrays.hashCode(shopList);
+        result = 31 * result + Arrays.hashCode(departmentsList);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "BuildingCompany{" +
+                "officeName='" + officeName + '\'' +
+                ", officeAddress='" + officeAddress + '\'' +
+                ", shopList=" + Arrays.toString(shopList) +
+                ", departmentsList=" + Arrays.toString(departmentsList) +
+                ", warehouse=" + warehouse +
+                '}';
     }
 }

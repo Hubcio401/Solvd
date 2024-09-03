@@ -6,6 +6,7 @@ import com.solvd.money.Expense;
 import com.solvd.resource.Client;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Department {
 
@@ -72,25 +73,28 @@ public class Department {
     }
 
     @Override
-    public String toString() {
-        return "Department{" +
-                "workersList=" + Arrays.toString(workersList) +
-                ", clientsList=" + Arrays.toString(clientsList) +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return Arrays.equals(workersList, that.workersList) && Arrays.equals(clientsList, that.clientsList);
+        return Objects.equals(departmentName, that.departmentName) && Objects.equals(manager, that.manager) && Arrays.equals(workersList, that.workersList) && Arrays.equals(clientsList, that.clientsList) && Objects.equals(expense, that.expense);
     }
 
     @Override
     public int hashCode() {
-        int result = Arrays.hashCode(workersList);
+        int result = Objects.hash(departmentName, manager, expense);
+        result = 31 * result + Arrays.hashCode(workersList);
         result = 31 * result + Arrays.hashCode(clientsList);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "departmentName='" + departmentName + '\'' +
+                ", manager=" + manager +
+                ", workersList=" + Arrays.toString(workersList) +
+                ", clientsList=" + Arrays.toString(clientsList) +
+                '}';
     }
 }
