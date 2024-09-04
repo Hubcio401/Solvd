@@ -1,8 +1,10 @@
 package com.solvd.service;
 
+import com.solvd.interfaces.DeliveryPlanning;
+
 import java.util.Objects;
 
-public class Production {
+public class Production implements DeliveryPlanning {
 
     private int wood;
     private int glass;
@@ -29,6 +31,10 @@ public class Production {
         System.out.println("we already produce " + wood + " wood and " + glass + " glass");
     }
 
+    @Override
+    public void planDelivery() {
+        System.out.println("We are planing delivery to our warehouse ");
+    }
 
     public int getWood() {
         return wood;

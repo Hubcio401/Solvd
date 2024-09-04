@@ -104,19 +104,27 @@ public class Main {
 
         Expense.checkBuildingMaintenance();
 
+//
+//        Scanner scan = new Scanner(System.in);
+//        System.out.println("Enter new Date (dd/mm/yyyy): ");
+//        String newDate = scan.next();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        LocalDate dateToChange = LocalDate.parse(newDate,formatter);
+//
+//        Client clientOne = new Client(1,"Ewelina", "Jackson","boston", 525321, 5000);
+//        MyDate clientOneDate = new ClientsDate();
+//        clientOneDate.setNewDate(clientOne,dateToChange);
+//        clientOneDate.printDate(clientOne);
+//
+//        System.out.println(clientOneDate.sayHello());
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter new Date (dd/mm/yyyy): ");
-        String newDate = scan.next();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate dateToChange = LocalDate.parse(newDate,formatter);
 
-        Client clientOne = new Client(1,"Ewelina", "Jackson","boston", 525321, 5000);
-        MyDate clientOneDate = new ClientsDate();
-        clientOneDate.setNewDate(clientOne,dateToChange);
-        clientOneDate.printDate(clientOne);
+        dep.fireManager();
+        dep.printManager();
 
-        System.out.println(clientOneDate.sayHello());
+        dep.printWorkers();
+        dep.fireWorker(0);
+        dep.printWorkers();
 
 
     }

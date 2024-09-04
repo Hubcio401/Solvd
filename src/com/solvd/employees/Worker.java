@@ -1,13 +1,17 @@
 package com.solvd.employees;
 
+import com.solvd.interfaces.FireAnEmployee;
+import com.solvd.interfaces.IncomeTax;
+import com.solvd.interfaces.Payable;
+
 import java.time.LocalDate;
 
-public class Worker {
+public class Worker implements IncomeTax, Payable, FireAnEmployee {
 
     public int id_worker;
     private String name;
     private String surname;
-    private int paycheck = 0;
+    private int paycheck;
     private LocalDate beginningOfContract;
 
 
@@ -32,6 +36,23 @@ public class Worker {
     public Worker(String name, String surname) {
         this.name = name;
         this.surname = surname;
+    }
+
+    @Override
+    public double calculateWithTax() {
+        double paycheckWithTax;
+        paycheckWithTax = paycheck - (paycheck * incomeTax);
+        return paycheckWithTax;
+    }
+
+    @Override
+    public void paySalary() {
+        System.out.println("We paid " + calculateWithTax());
+    }
+
+    @Override
+    public void fireEmployee() {
+        System.out.println("We fired " + getName() + " " +  getSurname());
     }
 
     public String getName() {

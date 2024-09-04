@@ -10,7 +10,7 @@ public class BuildingCompany {
 
     public String officeName;
     public String officeAddress;
-    private Shop shopList[] = new Shop[1];
+    private Shop shop = new Shop();
     private Department departmentsList[] = new Department[1];
     private Warehouse warehouse = new Warehouse();
 
@@ -41,7 +41,7 @@ public class BuildingCompany {
 
 
     public void createShop(Shop shop){
-        this.shopList[0] = shop;
+        this.shop = shop;
     }
 
     public void getWarehouse(){
@@ -57,24 +57,19 @@ public class BuildingCompany {
     }
 
 
-    public void printStore(){
-        for(int i = 0; i< shopList.length; i++){
-            System.out.println(shopList[i]);
-        }
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BuildingCompany company = (BuildingCompany) o;
-        return Objects.equals(officeName, company.officeName) && Objects.equals(officeAddress, company.officeAddress) && Arrays.equals(shopList, company.shopList) && Arrays.equals(departmentsList, company.departmentsList) && Objects.equals(warehouse, company.warehouse);
+        return Objects.equals(officeName, company.officeName) && Objects.equals(officeAddress, company.officeAddress) && Objects.equals(shop, company.shop) && Arrays.equals(departmentsList, company.departmentsList) && Objects.equals(warehouse, company.warehouse);
     }
 
     @Override
     public int hashCode() {
         int result = Objects.hash(officeName, officeAddress, warehouse);
-        result = 31 * result + Arrays.hashCode(shopList);
+        result = 31 * result + Objects.hash(shop);
         result = 31 * result + Arrays.hashCode(departmentsList);
         return result;
     }
@@ -84,7 +79,7 @@ public class BuildingCompany {
         return "BuildingCompany{" +
                 "officeName='" + officeName + '\'' +
                 ", officeAddress='" + officeAddress + '\'' +
-                ", shopList=" + Arrays.toString(shopList) +
+                ", shopList=" + shop +
                 ", departmentsList=" + Arrays.toString(departmentsList) +
                 ", warehouse=" + warehouse +
                 '}';

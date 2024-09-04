@@ -39,6 +39,17 @@ public class Department {
 
     }
 
+    public void fireManager(){
+        manager.fireEmployee();
+        this.manager = null;
+    }
+
+    public void fireWorker(int id_worker){
+        workersList[id_worker].fireEmployee();
+        this.workersList[id_worker] = null;
+
+    }
+
     public void hireManager(Manager manager){
         this.manager = manager;
     }
@@ -63,6 +74,14 @@ public class Department {
             System.out.println(clientsList[i]);
         }
     }
+
+    public void printWorkers(){
+
+        for(int i = 0; i< workersList.length; i++){
+            System.out.println(workersList[i]);
+        }
+    }
+
 
     public String getDepartmentName() {
         return departmentName;

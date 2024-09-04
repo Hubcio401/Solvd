@@ -1,10 +1,11 @@
 package com.solvd.company;
 
+import com.solvd.interfaces.DeliveryPlanning;
 import com.solvd.service.ShopService;
 
 import java.util.Objects;
 
-public class Shop {
+public class Shop implements DeliveryPlanning {
 
     public String name;
     private int bricks;
@@ -31,6 +32,11 @@ public class Shop {
     }
 
     public Shop() {
+    }
+
+    @Override
+    public void planDelivery() {
+        System.out.println("We are sending resources to " + shopService.getClientName() + shopService.getClientSurname());
     }
 
     public void createShopServiece(ShopService shopService){

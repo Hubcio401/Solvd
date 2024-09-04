@@ -1,9 +1,13 @@
 package com.solvd.employees;
 
 
+import com.solvd.interfaces.FireAnEmployee;
+import com.solvd.interfaces.IncomeTax;
+import com.solvd.interfaces.Payable;
+
 import java.util.Objects;
 
-public class Manager {
+public class Manager implements IncomeTax, Payable, FireAnEmployee {
 
     private String name;
     private String surname;
@@ -32,6 +36,22 @@ public class Manager {
         this.bonus = bonus;
     }
 
+    @Override
+    public void fireEmployee() {
+        System.out.println("We fired " + getName() + " " +  getSurname());
+    }
+
+    @Override
+    public double calculateWithTax() {
+        double paycheckWithTax;
+        paycheckWithTax = paycheck - (paycheck * incomeTax);
+        return paycheckWithTax;
+    }
+
+    @Override
+    public void paySalary() {
+        System.out.println("We paid " + calculateWithTax());
+    }
 
     public String getName() {
         return name;
