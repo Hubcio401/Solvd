@@ -1,8 +1,8 @@
 package com.solvd.company;
 
 
-import Exceptions.CompanyName;
-import Exceptions.FullWarehouse;
+import com.solvd.Exceptions.CompanyName;
+import com.solvd.Exceptions.FullWarehouse;
 import com.solvd.resource.Warehouse;
 import com.solvd.shops.Shop;
 

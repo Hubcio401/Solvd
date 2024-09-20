@@ -1,6 +1,6 @@
 package com.solvd.money;
 
-import Exceptions.NegativeInvoiceNumber;
+import com.solvd.Exceptions.NegativeInvoiceNumber;
 import com.solvd.resource.Client;
 
 import java.time.LocalDate;

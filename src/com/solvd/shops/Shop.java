@@ -1,6 +1,6 @@
 package com.solvd.shops;
 
-import Exceptions.NoAddress;
+import com.solvd.Exceptions.NoAddress;
 import com.solvd.interfaces.MaintainsInventory;
 import com.solvd.resource.ShopClient;
 

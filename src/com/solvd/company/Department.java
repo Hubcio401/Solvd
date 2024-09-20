@@ -1,6 +1,6 @@
 package com.solvd.company;
 
-import Exceptions.CleaningCompanyBuilding;
+import com.solvd.Exceptions.CleaningCompanyBuilding;
 import com.solvd.employees.Cleaner;
 import com.solvd.employees.Manager;
 import com.solvd.employees.Worker;

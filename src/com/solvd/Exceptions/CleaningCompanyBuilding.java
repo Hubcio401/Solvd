@@ -1,4 +1,4 @@
-package Exceptions;
+package com.solvd.Exceptions;
 
 public class CleaningCompanyBuilding extends Exception{
 
