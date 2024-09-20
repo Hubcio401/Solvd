@@ -1,17 +1,19 @@
-package com.solvd.company;
+package com.solvd.shops;
 
-import com.solvd.interfaces.DeliveryPlanning;
-import com.solvd.service.ShopService;
+import Exceptions.NoAddress;
+import com.solvd.interfaces.MaintainsInventory;
+import com.solvd.resource.ShopClient;
+
 
 import java.util.Objects;
 
-public class Shop implements DeliveryPlanning {
+public class Shop implements MaintainsInventory {
 
     public String name;
     private int bricks;
     private int cement;
     private int tools;
-    private ShopService shopService = new ShopService();
+    private ShopClient shopClient[] = new ShopClient[2];
 
     public Shop(String name, int bricks, int cement, int tools) {
         this.name = name;
@@ -34,19 +36,23 @@ public class Shop implements DeliveryPlanning {
     public Shop() {
     }
 
+    public void createShopClient(int id_client ,ShopClient shopClient){
+        this.shopClient[id_client] = shopClient;
+    }
+
+    public void sendToClient(int idWorker){
+        if (shopClient[idWorker].getAddress()==null){
+            throw new NoAddress("We can't send purchases without address!");
+        }
+        else {
+            System.out.println("Send purchases to " + shopClient[idWorker].getName() + " " + shopClient[idWorker].getSurname() + " on address " + shopClient[idWorker].getAddress());
+        }
+    }
+
     @Override
-    public void planDelivery() {
-        System.out.println("We are sending resources to " + shopService.getClientName() + shopService.getClientSurname());
-    }
+    public void checkInventory() {
+        System.out.println("In shop we have: " + getBricks() + " bricks " + getCement() + " cement " + getTools() + " tools " );
 
-    public void createShopServiece(ShopService shopService){
-
-        this.shopService = shopService;
-
-    }
-
-    public void sendBricks(int br){
-            shopService.sendBr(br);
     }
 
     public int getBricks() {
@@ -88,11 +94,11 @@ public class Shop implements DeliveryPlanning {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Shop shop = (Shop) o;
-        return bricks == shop.bricks && cement == shop.cement && tools == shop.tools && Objects.equals(name, shop.name) && Objects.equals(shopService, shop.shopService);
+        return bricks == shop.bricks && cement == shop.cement && tools == shop.tools && Objects.equals(name, shop.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, bricks, cement, tools, shopService);
+        return Objects.hash(name, bricks, cement, tools);
     }
 }

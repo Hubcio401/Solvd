@@ -1,5 +1,6 @@
 package com.solvd.money;
 
+import com.solvd.employees.Cleaner;
 import com.solvd.employees.Manager;
 import com.solvd.employees.Worker;
 import com.solvd.resource.Client;
@@ -12,19 +13,19 @@ public class Expense {
     private int profit;
     private static int buildingmaintenance = 100;
 
-    public Expense() {
+    public Expense(){
     }
 
     public static void checkBuildingMaintenance(){
         System.out.println("Building Maintenance = " + buildingmaintenance);
     }
 
-    public int costs(Worker arrW[], Manager man){
+    public int costs(Worker arrW[], Manager man, Cleaner cleaner){
 
         for(int i=0;i < arrW.length;i++){
             costs = costs + arrW[i].getPaycheck();
         }
-        costs = costs + man.getPaycheck() + man.getBonus() + buildingmaintenance;
+        costs = costs + man.getPaycheck() + man.getBonus() + buildingmaintenance + cleaner.getPaycheck();
         return costs;
     }
 
@@ -34,6 +35,7 @@ public class Expense {
         }
         return profit;
     }
+
 
 
     public int getCosts() {

@@ -1,5 +1,7 @@
 package com.solvd.resource;
 
+import com.solvd.money.Invoice;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -11,7 +13,8 @@ public class Client {
     private String surname;
     private String address;
     private int phoneNumber;
-    private int price;
+    public int price;
+    private Invoice invoice = new Invoice();
 
     public Client(int id_client, String name, String surname, String address, int phoneNumber, int price) {
         startDate = LocalDate.now();
@@ -22,7 +25,6 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.price = price;
     }
-
 
     public String getName() {
         return name;

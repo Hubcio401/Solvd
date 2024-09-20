@@ -1,12 +1,11 @@
 package com.solvd.employees;
 
 import com.solvd.interfaces.FireAnEmployee;
-import com.solvd.interfaces.IncomeTax;
-import com.solvd.interfaces.Payable;
+import com.solvd.interfaces.Report;
 
 import java.time.LocalDate;
 
-public class Worker implements IncomeTax, Payable, FireAnEmployee {
+public class Worker extends Employee implements  FireAnEmployee, Report {
 
     public int id_worker;
     private String name;
@@ -19,6 +18,7 @@ public class Worker implements IncomeTax, Payable, FireAnEmployee {
     }
 
     public Worker(String name, String surname, int paycheck) {
+        super(name,surname,paycheck);
         this.name = name;
         this.surname = surname;
         this.paycheck = paycheck;
@@ -26,10 +26,10 @@ public class Worker implements IncomeTax, Payable, FireAnEmployee {
     }
 
     public Worker(int id_worker, String name, String surname, int paycheck) {
-        this.id_worker = id_worker;
         this.name = name;
         this.surname = surname;
         this.paycheck = paycheck;
+        this.id_worker = id_worker;
         beginningOfContract = LocalDate.now();
     }
 
@@ -39,20 +39,34 @@ public class Worker implements IncomeTax, Payable, FireAnEmployee {
     }
 
     @Override
-    public double calculateWithTax() {
-        double paycheckWithTax;
-        paycheckWithTax = paycheck - (paycheck * incomeTax);
-        return paycheckWithTax;
+    public void work() {
+        System.out.println("I'm working as a worker");
     }
 
-    @Override
+
     public void paySalary() {
-        System.out.println("We paid " + calculateWithTax());
+        System.out.println("We paid: " + paycheck + " for: " + getName() + " " + getSurname());
     }
 
-    @Override
+
     public void fireEmployee() {
         System.out.println("We fired " + getName() + " " +  getSurname());
+    }
+
+
+
+    public void reportProblem(int problemNumber) {
+        switch (problemNumber){
+            case 1:
+                System.out.println("Worker " + getName() + " " + getSurname() + rep1);
+                break;
+            case 2:
+                System.out.println("Worker " + getName() + " " + getSurname() + rep2);
+                break;
+            case 3:
+                System.out.println("Worker " + getName() + " " + getSurname() + rep3);
+                break;
+        }
     }
 
     public String getName() {

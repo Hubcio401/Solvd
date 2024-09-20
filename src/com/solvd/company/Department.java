@@ -1,12 +1,14 @@
 package com.solvd.company;
 
+import Exceptions.CleaningCompanyBuilding;
+import com.solvd.employees.Cleaner;
 import com.solvd.employees.Manager;
 import com.solvd.employees.Worker;
 import com.solvd.money.Expense;
+import com.solvd.money.Invoice;
 import com.solvd.resource.Client;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public class Department {
 
@@ -15,22 +17,47 @@ public class Department {
     private Worker workersList[] = new Worker[2];
     private Client clientsList[] = new Client[2];
     private Expense expense = new Expense();
+    private Cleaner cleaner = new Cleaner();
+    private Invoice invoice = new Invoice();
+
+    public void createInvoice(int invoiceNumber, int idClient){
+            invoice.createInvoice(invoiceNumber, clientsList[idClient]);
+    }
 
 
     public void checkCosts(){
-        System.out.println(expense.costs(workersList,manager));
+        System.out.println(expense.costs(workersList,manager,cleaner));
     }
 
     public void checkProfit(){
         System.out.println(expense.profit(clientsList));
     }
 
-
-
     public Department(String departmentName) {
         this.departmentName = departmentName;
     }
 
+    public void hireCleaner(Cleaner cleaner){
+        this.cleaner = cleaner;
+    }
+
+
+    public void cleanBuilding(){
+
+        try {
+            Calendar c = Calendar.getInstance();
+            int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+            if (dayOfWeek != 6) {
+                throw new CleaningCompanyBuilding("Today is not friday, we are cleaning at the end of the week ");
+            }
+            else{
+                cleaner.cleanBuilding();
+            }
+        }
+        catch (CleaningCompanyBuilding ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 
 
     public void hireWorker(int id_worker, Worker worker){

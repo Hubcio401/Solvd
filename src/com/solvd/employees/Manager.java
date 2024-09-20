@@ -2,12 +2,11 @@ package com.solvd.employees;
 
 
 import com.solvd.interfaces.FireAnEmployee;
-import com.solvd.interfaces.IncomeTax;
-import com.solvd.interfaces.Payable;
+import com.solvd.interfaces.Report;
 
 import java.util.Objects;
 
-public class Manager implements IncomeTax, Payable, FireAnEmployee {
+public class Manager extends Employee implements FireAnEmployee, Report {
 
     private String name;
     private String surname;
@@ -15,13 +14,9 @@ public class Manager implements IncomeTax, Payable, FireAnEmployee {
     private int bonus;
 
     public Manager() {
-    }
 
-    public Manager(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-    }
 
+    }
 
     public Manager(String name, String surname, int paycheck) {
         this.name = name;
@@ -30,27 +25,42 @@ public class Manager implements IncomeTax, Payable, FireAnEmployee {
     }
 
     public Manager(String name, String surname, int paycheck, int bonus) {
+        super(name,surname,paycheck);
         this.name = name;
         this.surname = surname;
         this.paycheck = paycheck;
         this.bonus = bonus;
     }
 
+
+    public void paySalary() {
+        System.out.println("We paid: " + summaryPaycheck(paycheck,bonus) + " for: " + getName() + " " + getSurname());
+
+    }
+
     @Override
+    public void work() {
+        System.out.println("I'm working as a manager");
+    }
+
+
     public void fireEmployee() {
         System.out.println("We fired " + getName() + " " +  getSurname());
     }
 
-    @Override
-    public double calculateWithTax() {
-        double paycheckWithTax;
-        paycheckWithTax = paycheck - (paycheck * incomeTax);
-        return paycheckWithTax;
-    }
 
-    @Override
-    public void paySalary() {
-        System.out.println("We paid " + calculateWithTax());
+    public void reportProblem(int problemNumber) {
+        switch (problemNumber){
+            case 1:
+                System.out.println("Manager " + getName() + " " + getSurname() + rep1);
+                break;
+            case 2:
+                System.out.println("Manager " + getName() + " " + getSurname() + rep2);
+                break;
+            case 3:
+                System.out.println("Manager " + getName() + " " + getSurname() + rep3);
+                break;
+        }
     }
 
     public String getName() {

@@ -1,17 +1,15 @@
 package com.solvd.resource;
 
-import com.solvd.service.Production;
+import com.solvd.interfaces.MaintainsInventory;
 
-import java.time.LocalDate;
+
 import java.util.Objects;
 
-public class Warehouse {
+public final class Warehouse implements MaintainsInventory {
 
     private int bagsOfCement;
     private int wood;
     private int glass;
-    private LocalDate productionDate;
-    private Production production = new Production();
 
     public Warehouse() {
     }
@@ -31,24 +29,9 @@ public class Warehouse {
         this.bagsOfCement = bagsOfCement;
     }
 
-    public void createProduction(Production production){
-        this.production = production;
-    }
-
-
-    //??
-    public void produceWood(){
-        wood = wood + production.produceWood();
-        productionDate = LocalDate.now();
-        System.out.println("At " + productionDate + " we produce wood");
-        System.out.println("Now we have " + wood + " woods" );
-    }
-
-
-    public void produceGlass(){
-        glass = glass + production.produceGlass();
-        System.out.println("At " + productionDate + " we produce glass");
-        System.out.println("Now we have " + glass + " glass" );
+    @Override
+    public void checkInventory() {
+        System.out.println("In warehouse we have: " + getBagsOfCement() + " bags of cement " + getWood() + " wood " + getGlass() + " glass ");
     }
 
     public int getBagsOfCement() {
@@ -80,12 +63,12 @@ public class Warehouse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Warehouse warehouse = (Warehouse) o;
-        return bagsOfCement == warehouse.bagsOfCement && wood == warehouse.wood && glass == warehouse.glass && Objects.equals(productionDate, warehouse.productionDate) && Objects.equals(production, warehouse.production);
+        return bagsOfCement == warehouse.bagsOfCement && wood == warehouse.wood && glass == warehouse.glass;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bagsOfCement, wood, glass, productionDate, production);
+        return Objects.hash(bagsOfCement, wood, glass);
     }
 
     @Override
@@ -94,7 +77,6 @@ public class Warehouse {
                 "bagsOfCement=" + bagsOfCement +
                 ", wood=" + wood +
                 ", glass=" + glass +
-                ", productionDate=" + productionDate +
                 '}';
     }
 }

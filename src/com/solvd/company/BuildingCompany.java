@@ -1,10 +1,13 @@
 package com.solvd.company;
 
 
+import Exceptions.CompanyName;
+import Exceptions.FullWarehouse;
 import com.solvd.resource.Warehouse;
+import com.solvd.shops.Shop;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
+
 
 public class BuildingCompany {
 
@@ -14,15 +17,21 @@ public class BuildingCompany {
     private Department departmentsList[] = new Department[1];
     private Warehouse warehouse = new Warehouse();
 
+    static{
+        System.out.println("Additional info: ");
+        System.out.println("We start working at 8 AM ");
+        System.out.println("--------------------------------------------------");
+    }
+
     public BuildingCompany(String officeName, String officeAddress) {
         this.officeName = officeName;
         this.officeAddress = officeAddress;
     }
 
-
     public void createDepartment(Department departmentsList) {
         this.departmentsList[0] = departmentsList;
     }
+
 
 
     public void createWarehouse(Warehouse warehouse){
@@ -33,12 +42,21 @@ public class BuildingCompany {
         departmentsList[0].printClients();
     }
 
+
     public void printDepartmentNames(){
         for(int i = 0; i<departmentsList.length;i++){
             System.out.println(departmentsList[i].getDepartmentName());
         }
     }
 
+
+    public void checkWarehouseInventory(){
+        warehouse.checkInventory();
+    }
+
+    public void checkShopInventory(){
+        shop.checkInventory();
+    }
 
     public void createShop(Shop shop){
         this.shop = shop;
@@ -51,11 +69,44 @@ public class BuildingCompany {
     }
 
     public void setWarehouse( int cement, int wood, int glass){
-        warehouse.setBagsOfCement(cement);
-        warehouse.setWood(wood);
-        warehouse.setGlass(glass);
+        if (cement > 30){
+            throw new FullWarehouse("Too much bags of cement in warehouse");
+        }
+        else{
+            warehouse.setBagsOfCement(cement);
+        }
+        if (wood > 30){
+            throw new FullWarehouse("Too much bags of wood in warehouse");
+        }
+        else{
+            warehouse.setWood(wood);
+        }
+        if (glass > 30){
+            throw new FullWarehouse("Too much bags of glass in warehouse");
+        }
+        else{
+            warehouse.setGlass(glass);
+        }
     }
 
+    public void changeComapnyName(){
+        try {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("What is new company name? ");
+            String compName = scan.nextLine();
+
+            if (Character.isUpperCase(compName.charAt(0))==false){
+                throw new CompanyName("Company name should start from big letter!");
+            }
+            else{
+                officeName = compName;
+            }
+        }
+        catch (CompanyName ex){
+            System.out.println(ex.getMessage());
+        }
+
+    }
 
 
     @Override
